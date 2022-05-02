@@ -16,7 +16,7 @@ csvFile_Input = 'act_ppmi_filepaths.csv'
 createCSV = True
 
 #* File locations
-top_folder = '~/ox_tools/anatomically_constrained_tractography'
+top_folder = '/cluster/project9/HCP_subjects/anatomically_constrained_tractography'
 data_folder = os.path.join(top_folder,'PPMI')
 dicom_folder = os.path.join(data_folder,'raw_data_from_LONI')
 nifti_folder = os.path.join(data_folder,'dicom_to_nifti')
