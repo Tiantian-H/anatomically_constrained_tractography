@@ -10,19 +10,20 @@
 import os,subprocess,glob,csv
 import pandas as pd
 # import json
-
+# new comment: please ensure the file name of raw dcm data: should be sMRI and DTI respectively 
 #* Name of CSV file containing image file paths and IDs: to be used as input to act_ppmi_1_preprocess.py
-csvFile_Input = 'act_ppmi_filepaths.csv'
+csvFile_Input = 'act_adni_filepaths.csv'
 createCSV = True
 
 #* File locations
 top_folder = '/cluster/project9/HCP_subjects/anatomically_constrained_tractography'
-data_folder = os.path.join(top_folder,'PPMI')
+data_folder = os.path.join(top_folder,'ADNI')
 dicom_folder = os.path.join(data_folder,'raw_data_from_LONI')
 nifti_folder = os.path.join(data_folder,'dicom_to_nifti')
 sMRI_folder = os.path.normpath(os.path.join(data_folder,'act','sMRI'))
 dMRI_folder = os.path.normpath(os.path.join(data_folder,'act','dMRI'))
 json_folder = os.path.normpath(os.path.join(data_folder,'act','json'))
+o = subprocess.run(['mkdir','-p',nifti_folder])
 o = subprocess.run(['mkdir','-p',sMRI_folder])
 o = subprocess.run(['mkdir','-p',dMRI_folder])
 o = subprocess.run(['mkdir','-p',json_folder])
@@ -32,8 +33,28 @@ os.chdir(wd)
 import act_utilities
 
 #* Convert LONI DICOMs to NIFTI
-dcm2niix_out = subprocess.run(['dcm2niix','-o',nifti_folder,'-f','%i_%t_%s_%p','-z','y',data_folder])
+dcm2niix_out = subprocess.run(['dcm2niix','-o',nifti_folder,'-f','%i_%t_%s_%p-%d','-z','y',data_folder])
 
+# rename files
+os.chdir(nifti_folder)
+cmd_sMRI = '''for f in *Sag_IR-SPGR.nii.gz; do
+    mv -- "$f" "${f%Sag_IR-SPGR.nii.gz}sMRI.nii.gz"
+done'''
+runSMRI = os.system(cmd_sMRI)
+
+cmd_DTI = '''for f in *Axial_DTI.nii.gz; do
+    mv -- "$f" "${f%Axial_DTI.nii.gz}DTI.nii.gz"
+done
+for f in *Axial_DTI.bvec; do
+    mv -- "$f" "${f%Axial_DTI.bvec}DTI.bvec"
+done
+for f in *Axial_DTI.bval; do
+    mv -- "$f" "${f%Axial_DTI.bval}DTI.bval"
+done'''
+
+runDTI = os.system(cmd_DTI)
+
+os.chdir(wd)
 #* Move the nifti files in sMRI and dMRI folders (converted using dcm2niix from dicoms)
 df_nifti = pd.DataFrame(columns=["Subject ID","Modality","Path"])
 
@@ -53,7 +74,7 @@ for dMRI in dmris:
             df_nifti.at[idx,'Subject ID'] = patno
             df_nifti.at[idx,'Modality']   = 'dMRI'
             df_nifti.at[idx,'Path']       = newpath
-smris = glob.glob(os.path.join(nifti_folder,"*MPRAGE*"))
+smris = glob.glob(os.path.join(nifti_folder,"*sMRI*"))
 for sMRI in smris:
     patno = os.path.basename(sMRI).split('_')[0]
     if '.json' in sMRI:
