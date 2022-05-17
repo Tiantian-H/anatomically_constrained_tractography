@@ -50,6 +50,9 @@ for f in *Axial_DTI.bvec; do
 done
 for f in *Axial_DTI.bval; do
     mv -- "$f" "${f%Axial_DTI.bval}DTI.bval"
+done
+for f in *Axial_DTI.json; do
+    mv -- "$f" "${f%Axial_DTI.json}DTI.json"
 done'''
 
 runDTI = os.system(cmd_DTI)
