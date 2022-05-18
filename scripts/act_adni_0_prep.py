@@ -16,7 +16,7 @@ csvFile_Input = 'act_adni_filepaths.csv'
 createCSV = True
 
 #* File locations
-top_folder = '/cluster/project9/HCP_subjects/anatomically_constrained_tractography'
+top_folder = '***your_directoy***/anatomically_constrained_tractography' # please relapce ***your_directoy*** with your own one
 data_folder = os.path.join(top_folder,'ADNI')
 dicom_folder = os.path.join(data_folder,'raw_data_from_LONI')
 nifti_folder = os.path.join(data_folder,'dicom_to_nifti')
