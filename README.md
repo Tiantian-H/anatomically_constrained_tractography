@@ -74,7 +74,7 @@ The final file structure has been put at the end.
 
 ### Step 1
 
-Please change the ```top_folder``` inside the .py file to your own directory.
+Please change the ```top_folder``` inside the .py file to your own directory. Implement the following command to run the first .py file.
 ```bash
 cd ***your_directoy***/anatomically_constrained_tractography/scripts
 python act_adni_0_prep.py
