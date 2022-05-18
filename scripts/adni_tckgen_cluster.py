@@ -215,7 +215,7 @@ echo "****** Job execution took ${hours} hours and ${minutes} minutes"
     outfile.close()
     return qsubFile
 
-
+# please replace the ***your_directoy*** below with your own directory
 def main():
     """
     Put it all together and hope for the best. ;-)
@@ -225,7 +225,7 @@ def main():
       workingDir
     """
     #Tiantian: change the dir to yours
-    workingDir = '/cluster/project9/HCP_subjects/anatomically_constrained_tractography/ADNI/act'
+    workingDir = '***your_directoy***/anatomically_constrained_tractography/ADNI/act' 
     folderContaining5TTandWMFODs = sys.argv[1]
     JOBNAME = folderContaining5TTandWMFODs.replace('_','')
     algorithm = sys.argv[2] #gif3
