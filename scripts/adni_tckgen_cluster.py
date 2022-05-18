@@ -224,7 +224,6 @@ def main():
       algorithm = gif2 or gif3 or freesurfer
       workingDir
     """
-    #Tiantian: change the dir to yours
     workingDir = '***your_directoy***/anatomically_constrained_tractography/ADNI/act' 
     folderContaining5TTandWMFODs = sys.argv[1]
     JOBNAME = folderContaining5TTandWMFODs.replace('_','')
