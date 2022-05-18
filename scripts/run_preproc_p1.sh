@@ -22,9 +22,9 @@ export PATH=${PATH}:/share/apps/ants-2.2.0/bin
 export PATH=${PATH}:/share/apps/freesurfer-6.0.0/bin
 export FREESURFER_HOME=/share/apps/freesurfer-6.0.0
 source $FREESURFER_HOME/SetUpFreeSurfer.sh
-export SUBJECTS_DIR=/cluster/project9/HCP_subjects/anatomically_constrained_tractography/ADNI/act
+export SUBJECTS_DIR=***your_directoy***/anatomically_constrained_tractography/ADNI/act
 
-cd /cluster/project9/HCP_subjects/anatomically_constrained_tractography/scripts
+cd ***your_directoy***/anatomically_constrained_tractography/scripts
 
 python act_adni_p1_preprocess.py
 date
