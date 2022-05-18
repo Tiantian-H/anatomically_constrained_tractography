@@ -21,7 +21,7 @@ n_cpus = 4
 csv_input_file = 'act_adni_filepaths.csv'
 
 #* File locations
-top_folder = '/cluster/project9/HCP_subjects/anatomically_constrained_tractography'
+top_folder = '***your_directoy***/anatomically_constrained_tractography' # please replace ***your_directoy*** with your own one
 data_folder = os.path.join(top_folder,'ADNI')
 act_folder  = os.path.normpath(os.path.join(data_folder,'act'))
 dMRI_folder = os.path.normpath(os.path.join(act_folder,'dMRI'))
