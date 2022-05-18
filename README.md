@@ -6,6 +6,7 @@ February 2022
 ## Further documentation on the ADNI connectome
 
 Modified by Tiantian He,May 2022
+
 The pakcage is modified from Neil Oxtoby's pakcage for generating connetomes using PPMI dataset: https://github.com/noxtoby/anatomically_constrained_tractography. It is written in python 3.
 The original PPMI pakcage is modified in order to generate connetomes using the ADNI dataset.  
 
