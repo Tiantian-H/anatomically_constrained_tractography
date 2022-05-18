@@ -25,6 +25,27 @@ If you're running the code on the UCL cluster, you can directly use the pre-inst
 
 Please replace ```***your_directoy***``` with your own directly on the cluster. 
 
+```bash
+source /share/apps/source_files/conda.source
+conda activate lilypad_env 
+export PATH=${PATH}:/share/apps/mrtrix3/bin
+export PATH=${PATH}:/share/apps/cmic/niftyreg_v1.5.43/bin
+source /share/apps/source_files/cuda/cuda-10.1.source
+export PATH=${PATH}:/share/apps/cmic/fsl-5.0.10/bin
+FSLDIR=/share/apps/cmic/fsl-5.0.10
+. ${FSLDIR}/etc/fslconf/fsl.sh
+PATH=${FSLDIR}/bin:${PATH}
+export FSLDIR PATH
+export PATH=${PATH}:/share/apps/ants-2.2.0/bin
+export PATH=${PATH}:/share/apps/freesurfer-6.0.0/bin
+export FREESURFER_HOME=/share/apps/freesurfer-6.0.0
+source $FREESURFER_HOME/SetUpFreeSurfer.sh
+export SUBJECTS_DIR= ***your_directoy***/anatomically_constrained_tractography
+
+cd ***your_directoy***/anatomically_constrained_tractography/scripts
+```
+### File structure
+
 The original file structure is:
 ```bash
 ***your_directoy**/anatomically_constrained_tractography
@@ -49,26 +70,8 @@ The original file structure is:
 |                       |-- ADNI_127_S_2234_MR_Sag_IR-SPGR__br_raw_20101209083913533_131_S96115_I207966.dcm
 |                       |-- ... other similar .dcm files for sMRI images
 ```
+The final file structure has been put at the end.
 
-```bash
-source /share/apps/source_files/conda.source
-conda activate lilypad_env 
-export PATH=${PATH}:/share/apps/mrtrix3/bin
-export PATH=${PATH}:/share/apps/cmic/niftyreg_v1.5.43/bin
-source /share/apps/source_files/cuda/cuda-10.1.source
-export PATH=${PATH}:/share/apps/cmic/fsl-5.0.10/bin
-FSLDIR=/share/apps/cmic/fsl-5.0.10
-. ${FSLDIR}/etc/fslconf/fsl.sh
-PATH=${FSLDIR}/bin:${PATH}
-export FSLDIR PATH
-export PATH=${PATH}:/share/apps/ants-2.2.0/bin
-export PATH=${PATH}:/share/apps/freesurfer-6.0.0/bin
-export FREESURFER_HOME=/share/apps/freesurfer-6.0.0
-source $FREESURFER_HOME/SetUpFreeSurfer.sh
-export SUBJECTS_DIR= ***your_directoy***/anatomically_constrained_tractography
-
-cd ***your_directoy***/anatomically_constrained_tractography/scripts
-```
 ### Step 1
 
 Please change the ```top_folder``` inside the .py file to your own directory.
