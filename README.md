@@ -49,7 +49,6 @@ cd ***your_directoy***/anatomically_constrained_tractography/scripts
 The original file structure is:
 ```bash
 ***your_directoy**/anatomically_constrained_tractography
-|-- act_adni_filepaths.csv
 |-- ADNI
 |   `-- raw_data_from_LONI
 |       `-- ADNI
@@ -69,6 +68,18 @@ The original file structure is:
 |                       |-- ADNI_127_S_2234_MR_Sag_IR-SPGR__br_raw_20101209083913434_147_S96115_I207966.dcm
 |                       |-- ADNI_127_S_2234_MR_Sag_IR-SPGR__br_raw_20101209083913533_131_S96115_I207966.dcm
 |                       |-- ... other similar .dcm files for sMRI images
+|-- LICENSE
+|-- README.md
+`-- scripts
+    |-- act_adni_0_prep.py
+    |-- act_adni_p1_preprocess.py
+    |-- act_adni_p2_preprocess.py
+    |-- act_utilities.py
+    |-- adni_tckgen_cluster.py
+    |-- __pycache__
+    |   `-- act_utilities.cpython-39.pyc
+    |-- run_preproc_p1.sh
+    `-- run_preproc_p2.sh
 ```
 The final file structure has been put at the end.
 
