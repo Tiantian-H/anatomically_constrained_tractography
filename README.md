@@ -96,8 +96,35 @@ Run act_adni_p1_preprocess.py file on the cluster by submitting the following ta
 qsub run_preproc_p1.sh
 ```
 ### Step 3 
+
 Run Freesurfer segmentation
-See the file called newFS_S2234_2010_12_08_207966.sh in sMRI_reg an example sh file for your reference. Please make sure the directory inside the sh file is altered.
+
+An example of running Freesurfer on UCL cluster is:
+
+```bash
+#$ -l tmem=12G
+#$ -l h_vmem=12G
+#$ -l h_rt=12:00:0
+#$ -S /bin/bash
+#$ -N FS_S2234_2010_12_08
+#$ -j y
+
+hostname
+date
+export PATH=${PATH}:/share/apps/freesurfer-6.0.0/bin
+export FREESURFER_HOME=/share/apps/freesurfer-6.0.0
+source $FREESURFER_HOME/SetUpFreeSurfer.sh
+export SUBJECTS_DIR= ***your directory***/anatomically_constrained_tractography/ADNI/act/sMRI_freesurfer
+
+recon-all \
+ -i ***your directory***/anatomically_constrained_tractography/ADNI/act/sMRI_reg/127_S_2234_20101208145414_2_ADNI2_GE_3T_20.0m4_8cha-sMRI_reg_aladin.nii.gz \
+ -subjid newADNI_S2234_2010_12_08 \
+ -all \
+ -cw256 \
+ -sd ***your directory***/anatomically_constrained_tractography/ADNI/act/sMRI_freesurfer
+date
+
+```
 
 ### Step 4 
 Run act_adni_p2_preprocess.py file on the cluster by submitting the following task to the cluster. Please make sure that the directories in the following .sh file has been set to your own.
